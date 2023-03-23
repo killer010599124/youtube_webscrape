@@ -26,21 +26,21 @@ def start_threads(proxies:list, urls:list, amountThreads:int, timeout:float) -> 
 
 
 
-if __name__ == "__main__":
-    urlsName = input("Enter name of file with urls: ")
-    print(urlsName)
-    proxiesName = input("Enter name of file with proxies: ")
-    filter = Filter()
-    proxies = filter.parse_proxies(proxiesFile=proxiesName)
-    urls = filter.filtrate_urls(urlsFile=urlsName)
-    amountThreads = int(input("Enter amount of threads: "))
-    timeout = float(input("Enter timeout between requests: "))
+# if __name__ == "__main__":
+#     urlsName = input("Enter name of file with urls: ")
+#     print(urlsName)
+#     proxiesName = input("Enter name of file with proxies: ")
+#     filter = Filter()
+#     proxies = filter.parse_proxies(proxiesFile=proxiesName)
+#     urls = filter.filtrate_urls(urlsFile=urlsName)
+#     amountThreads = int(input("Enter amount of threads: "))
+#     timeout = float(input("Enter timeout between requests: "))
 
-    start_threads(proxies=proxies, urls=urls, amountThreads=amountThreads, timeout=timeout)
+#     start_threads(proxies=proxies, urls=urls, amountThreads=amountThreads, timeout=timeout)
 
-    delimiter = str(input("Choose your delimiter: "))
-    # delimiter = ";"
-    saver = Saver(delimiter=delimiter)
-    saver.save_data_to_csv()
-    saver.save_to_json()
+#     delimiter = str(input("Choose your delimiter: "))
+#     # delimiter = ";"
+#     saver = Saver(delimiter=delimiter)
+#     saver.save_data_to_csv()
+#     saver.save_to_json()
 

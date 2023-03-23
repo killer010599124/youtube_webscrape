@@ -139,10 +139,10 @@ class Parser:
     
 
 
-if __name__ == "__main__":
-    parser = Parser(proxyFile="Webshare 99 proxies.txt")
-    parser.main()
-    data = loads(open("data.json", "r", encoding="utf-8").read())
-    saver = Saver(data=data)
-    saver.save_data_to_csv()
+# if __name__ == "__main__":
+#     parser = Parser(proxyFile="Webshare 99 proxies.txt")
+#     parser.main()
+#     data = loads(open("data.json", "r", encoding="utf-8").read())
+#     saver = Saver(data=data)
+#     saver.save_data_to_csv()
     

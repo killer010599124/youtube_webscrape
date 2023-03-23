@@ -1,5 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from main import *
+from multiprocessing import Pool
+import sys
+import os
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -45,10 +48,7 @@ class Ui_MainWindow(object):
         
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
         self.verticalLayout.addLayout(self.verticalLayout_4)
-        self.horizontalSlider = QtWidgets.QSlider(self.centralWidget)
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.horizontalSlider.setObjectName("horizontalSlider")
-        self.verticalLayout.addWidget(self.horizontalSlider)
+        
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setContentsMargins(11, 11, 11, 11)
         self.verticalLayout_2.setSpacing(6)
@@ -107,22 +107,16 @@ class Ui_MainWindow(object):
         self.threadcount = int(self.textEdit.text())
         print (self.threadcount)
         with open('proxies.txt', 'r') as movieDir:
-            cnt = 0
             for row in movieDir:
-                cnt += 1
-                if cnt <= self.threadcount:
-                    self.listWidget.addItem(row)
-                else :break
+                self.listWidget.addItem(row)
+                
     def addUrls(self):
         
         self.threadcount = int(self.textEdit.text())  
-        with open('urls.txt', 'r') as movieDir:  
-            cnt = 0
+        with open('yturls.txt', 'r') as movieDir:  
             for row in movieDir:
-                cnt += 1
-                if cnt <= self.threadcount:
-                    self.listView_url.addItem(row)
-                else :break
+                self.listView_url.addItem(row)
+                
     def startScape(self):
         urlsName = "yturls.txt"
         proxiesName = "proxies.txt"
@@ -138,8 +132,19 @@ class Ui_MainWindow(object):
         saver.save_to_json()
         
 if __name__ == "__main__":
-    import sys
+    
+    config_name = 'myapp.cfg'
+
+# determine if application is a script file or frozen exe
+    if getattr(sys, 'frozen', False):
+        application_path = os.path.dirname(sys.executable)
+    elif __file__:
+        application_path = os.path.dirname(__file__)
+
+    config_path = os.path.join(application_path, config_name)
+    
     app = QtWidgets.QApplication(sys.argv)
+    
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
